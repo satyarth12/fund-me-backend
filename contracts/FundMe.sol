@@ -1,4 +1,4 @@
-pragma solidity >=0.6.0 <0.9.0;
+pragma solidity >=0.6.0;
 
 /**
  * @title FundMe
@@ -6,7 +6,7 @@ pragma solidity >=0.6.0 <0.9.0;
  */
 
 // importing from: https://www.npmjs.com/package/@chainlink/contracts
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
 // // SafeMathChainlink library
 // import "@chainlink/contracts/src/v0.8/vendor/SafeMathChainlink.sol";
@@ -26,7 +26,7 @@ contract FundMe {
     /**
      * Constructor runs only once, at the time of contract deployment.
      */
-    constructor() {
+    constructor() public {
         priceFeed = AggregatorV3Interface(
             0x8A753747A1Fa494EC906cE90E9f37563A8AF630e
         );
