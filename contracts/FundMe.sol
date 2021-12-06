@@ -9,7 +9,7 @@ pragma solidity >=0.6.0;
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
 // // SafeMathChainlink library
-// import "@chainlink/contracts/src/v0.8/vendor/SafeMathChainlink.sol";
+import "@chainlink/contracts/src/v0.6/vendor/SafeMathChainlink.sol";
 
 contract FundMe {
     // keep track of the sender and amount sent
@@ -25,11 +25,12 @@ contract FundMe {
 
     /**
      * Constructor runs only once, at the time of contract deployment.
+     * AggregatorV3Interface is hardcoded to work with rinkeby chain
+        - Forking: Wroking on the forked simulated chain
+        - Mocking: Deploy a mock/fake interface contract on the ganache/local chain
      */
-    constructor() public {
-        priceFeed = AggregatorV3Interface(
-            0x8A753747A1Fa494EC906cE90E9f37563A8AF630e
-        );
+    constructor(address _interfaceAddress) public {
+        priceFeed = AggregatorV3Interface(_interfaceAddress);
         owner = msg.sender;
     }
 
